@@ -938,12 +938,7 @@ input[type=checkbox]:checked + label:before {
     width: 0;
 }
 
-.banner-bg {
-    background: url("../img/banner/banner-1.jpg");
-}
-
 .item-bg {
-    /*background: url("../img/banner-1.jpg");*/
     height: 100vh;
     /*animation: bgburnsEast 25s linear infinite alternate;
     -webkit-animation: bgburnsEast 25s linear infinite alternate;*/
@@ -2562,7 +2557,6 @@ footer {
 /** Counters start **/
 .counters {
     background-size: cover;
-    background: url(http://placehold.it/1920x281) 50% 0 repeat-y;
     width: 100%;
     position: relative;
     padding: 60px 0 20px;
@@ -2789,26 +2783,6 @@ footer {
     height: 481px;
 }
 
-.cat-1-bg {
-    background-image: url(../img/popular-places/popular-places-1.jpg);
-}
-
-.cat-2-bg {
-    background-image: url(../img/popular-places/popular-places-2.jpg);
-}
-
-.cat-3-bg {
-    background-image: url(../img/popular-places/popular-places-3.jpg);
-}
-
-.cat-4-bg {
-    background-image: url(../img/popular-places/popular-places-4.jpg);
-}
-
-.cat-5-bg {
-    background-image: url(../img/popular-places/popular-places-5.jpg);
-}
-
 .category:hover .category_bg_box {
     transform: scale(1.06);
     transition: transform 0.35s ease-out;
@@ -2877,7 +2851,6 @@ footer {
 
 /** Listings parallax start **/
 .listings-parallax {
-    background: url(../img/listings-parallax.jpg);
     z-index: 0;
     background-position: center center;
     background-repeat: no-repeat;
@@ -3074,7 +3047,6 @@ footer {
 
 /** Coming soon start **/
 .coming-soon-bg {
-    background: rgba(0, 0, 0, 0.04) url(http://placehold.it/1920x355) top left repeat;
     background-size: cover;
     top: 0;
     width: 100%;
@@ -3477,7 +3449,6 @@ footer {
 /**  Intro section **/
 .intro-section {
     background-size: cover;
-    background: url(http://placehold.it/1920x130) 50% 0 repeat-y;
     width: 100%;
     position: relative;
     padding: 30px 0 10px;
@@ -5916,7 +5887,6 @@ employer-box-2{
     width: 100%;
     height: 100%;
     z-index: 999999;
-    background: url(../img/loader.gif) center no-repeat #fff;
 }
 
 .slider-section .simple-slider {
