@@ -1,0 +1,48 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+<!-- Banner start -->
+<div class="banner bg-color-full" id="banner">
+    <div id="bannerCarousole" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item banner-max-height active">
+                <img class="d-block w-100 h-100" src="/media/main/hire1.jpg" alt="banner">
+                <div class="carousel-caption banner-slider-inner d-flex text-center"></div>
+            </div>
+            <div class="carousel-item banner-max-height">
+                <img class="d-block w-100 h-100" src="/media/main/hire1.jpg" alt="banner">
+                <div class="carousel-caption banner-slider-inner d-flex text-center"></div>
+            </div>
+            <div class="carousel-item banner-max-height">
+                <img class="d-block w-100 h-100" src="/media/main/hire1.jpg" alt="banner">
+                <div class="carousel-caption banner-slider-inner d-flex text-center"></div>
+            </div>
+        </div>
+    </div>
+    <div class="banner-inner">
+        <div class="container">
+            <div class="text-center">
+                <h1>Don’t know what to do, Visit Us!</h1>
+                <p>No more problems, search for solution.</p>
+            </div>
+            <div class="banner-counter-box none-768">
+                <div class="counter-box">
+                    <h1 class="counter">{{job_count}}</h1>
+                    <p>Jobs Posted</p>
+                </div>
+                <div class="counter-box">
+                    <h1 class="counter">167</h1>
+                    <p>Companies</p>
+                </div>
+                <div class="counter-box">
+                    <h1 class="counter">150</h1>
+                    <p>Candidates</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Banner end -->
+
+{% endblock content%}
