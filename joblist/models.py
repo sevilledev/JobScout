@@ -1,15 +1,25 @@
+from hashlib import blake2b
+from statistics import mode
 from django.db import models
 from django.conf import settings
 from django.db.models.fields.files import ImageField
 from django.core.files.storage import FileSystemStorage
+from django.forms import CharField
 from utils.uploadjobimg import upload_job_img
 from utils.genslug import gen_slug
 
 # Create your models here.
 
+class JobCategory(models.Model):
+    name = models.CharField(max_length=100,blank=True,null=True)
+
+    def __str__(self) -> str:
+        return self.name
+
 class JobCard(models.Model):
     slug = models.SlugField(blank=True)
     title = models.CharField(max_length=200,blank=True,null=True)
+    category = models.ForeignKey(JobCategory,on_delete=models.CASCADE,blank=True,null=True,related_name='jobs')
     logo = ImageField(
         upload_to=upload_job_img,
         storage=FileSystemStorage(location=settings.MEDIA_ROOT),

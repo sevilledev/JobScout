@@ -64,7 +64,9 @@ body {
 .about{
     align-items: center;
 }
-
+.navbar{
+    line-height: 0.5;
+}
 /** my additions**/
 
 a:hover {
@@ -741,8 +743,9 @@ input[type=checkbox]:checked + label:before {
 }
 
 .main-header .navbar-expand-lg .navbar-nav .nav-link {
-    margin-bottom: 10px;
-    padding: 30px 20px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding: 25px 20px;
     line-height: 25px;
     font-size: 18px;
     font-weight: 550;
