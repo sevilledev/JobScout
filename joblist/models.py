@@ -29,7 +29,6 @@ class JobCard(models.Model):
     company = models.CharField(max_length=200,blank=True,null=True)
     location = models.CharField(max_length=200,blank=True,null=True)
     job_type = models.CharField(max_length=200,blank=True,null=True)
-    salary = models.CharField(max_length=200,blank=True,null=True)
     deadline = models.DateField(blank=True,null=True)
     experience = models.CharField(max_length=200,blank=True,null=True)
     description = models.TextField(blank=True,null=True)
