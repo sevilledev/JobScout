@@ -1,12 +1,12 @@
 {% extends 'layout.html' %}
-
+{% load static %}
 {% block content %}
 
 <!-- Sub banner start -->
 <div class="sub-banner bg-color-full">
     <div class="container">
         <div class="breadcrumb-area">
-            <h1>{{object.title}}</h1>
+            <h1>{{article.title}}</h1>
             <ul class="breadcrumbs">
                 <li><a href="{% url 'home' %}">Home</a></li>
                 <li class="active"><a href="{% url 'blog' %}">Career Notes</a></li>
@@ -25,54 +25,89 @@
                 <!-- Blog 1 start -->
                 <div class="blog-1 blog-big">
                     <div class="detail">
-                        <h3>{{object.title}}</h3>
+                        <h3>{{article.title}}</h3>
                         <div class="post-meta">
-                            <span><i class="flaticon-time"></i>{{object.date}}</span>
-                            <span><a href="#"><i class="flaticon-comment"></i>27</a></span>
+                            <span><i class="flaticon-time"></i>{{article.date|date:'d/m/y'}}</span>
+                            <span><i class="flaticon-comment"></i>{{comment_count}}</span>
                         </div>
-                        <p>{{article.content}}</p>
+                        <p>{{article.content|linebreaks}}</p>
                         <br>
                     </div>
                 </div>
-                <!-- Heading 2 -->
-                <h3 class="heading-2">Comments{{object.comments}}</h3>
-
                 
                 <!-- Comments start -->
+                <h3 class="heading-2">Comments</h3>
                 <ul class="comments">
-                    <li>
-                        <div class="comment">
-                            <div class="comment-content">
-                                <div class="comment-meta">
-                                    <h3>
-                                        Maikel Alisa
-                                    </h3>
-                                    <div class="comment-meta">
-                                        8:42 PM 11/28/2018<a href="#">Reply</a>
-                                    </div>
-                                </div>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec luctus tincidunt aliquam. Aliquam gravida massa at sem vulputate interdum et vel eros. Maecenas eros enim, tincidunt vel turpis vel, dapibus tempus nulla.</p>
-                            </div>
-                        </div>
-                        <ul>
+                    {% if comments.count == 0%}
+                            <h6>No comments yet...</h6>
+                    {%else%}
+                        {% for comment in comments %}
+                            {% if comment.parent is None %}
                             <li>
                                 <div class="comment">
-                                    <div class="comment-content">
+                                    <div class="comment-content" >
                                         <div class="comment-meta">
-                                            <h3>
-                                                Karen Paran
-                                            </h3>
+                                            <h3 class="{{comment.id}}">{{comment.name}}</h3>
                                             <div class="comment-meta">
-                                                8:42 PM 11/28/2018<a href="#">Reply</a>
+                                                {{comment.date|date:'d/m/Y'}}<a href="#form_reply" id="{{comment.id}}" onclick="reply_comment(this.id)">Reply</a>
                                             </div>
                                         </div>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec luctus tincidunt aliquam. Aliquam gravida massa .</p>
+                                        <p class="{{comment.id}}">{{comment.content}}</p>
                                     </div>
                                 </div>
-                            </li>
-                        </ul>
-                    </li>
+                                    {% for comment_reply in comment.r_replies.all %}
+                                    <ul>
+                                        <li>
+                                            <div class="comment">
+                                                <div class="comment-content" >
+                                                    <div class="comment-meta">
+                                                        <h3 class="{{comment_reply.id}}">{{comment_reply.name}}</h3>
+                                                        <div class="comment-meta">
+                                                            {{comment_reply.date|date:'d/m/y'}}<a href="#form_reply" class="reply_btn" data-id="{{comment.id}}" id="{{comment_reply.id}}">Reply</a>
+                                                        </div>
+                                                    </div>
+                                                    <p class="{{comment_reply.id}}">{{comment_reply.content}}</p>
+                                                </div>
+                                            </div>
+                                        </li>      
+                                    </ul>
+                                {%endfor%}
+                            </li>    
+                            {% endif %}
+                        {%endfor%}
+                    {%endif%}
                 </ul>
+                <br>
+
+                <!-- Heading 2 -->
+                <div>
+                    {%if new_comment%}
+                        <div class="alert alert-success" role="alert">
+                        Your comment sent successfully!
+                        </div>
+                    {%else%}
+                        <h3 id="form_reply">Leave a comment</h3>
+                        {%load crispy_forms_tags%}
+                        <form method="post" style="margin-top: 1.3em;">
+                            <input type="hidden" data-parent="null" value="null" name="parent-id" class="hidden-input">
+
+                            <div style = "display: none;"  id="reply_info">
+                                <p>Replied comment:</p>
+                                <div  class="alert alert-primary">
+                                    <a onclick="no_reply_comment()" class="close"  aria-label="close">&times;</a>
+                                    <span><strong id="reply-name">Ad soyad </strong></span> 
+                                    <span id="reply-content">mesaji</span>
+                                </div>
+                            </div>
+
+                            {{comment_form | crispy}}
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-primary btn-lg">Submit</button>
+                        </form>
+                    {%endif%}
+                </div>
+
+
             </div>
         </div>
     </div>
@@ -80,3 +115,16 @@
 <!-- Blog body end -->
 
 {% endblock content %}
+
+
+
+{% block js %}
+
+<script  src="{% static 'js/reply.js' %}"></script>
+<script>
+
+ 
+
+</script>
+
+{% endblock js %}

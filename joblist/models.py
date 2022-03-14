@@ -17,7 +17,7 @@ class JobCategory(models.Model):
         return self.name
 
 class JobCard(models.Model):
-    slug = models.SlugField(blank=True)
+    slug = models.SlugField(blank=True, editable=False)
     title = models.CharField(max_length=200,blank=True,null=True)
     category = models.ForeignKey(JobCategory,on_delete=models.CASCADE,blank=True,null=True,related_name='jobs')
     logo = ImageField(

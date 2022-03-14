@@ -26,22 +26,28 @@
                     <div class="widget-4 advanced-search">
                         <form method="GET" class="informeson">
                             <div class="form-group">
-                                <i class="flaticon-search"></i><label><h6>&nbsp;Search over categories</h6></label>
-                                <select class="selectpicker search-fields" name="categories">
-                                    <option>All Categories</option>
-                                    <option>Accounting / Finance</option>
-                                    <option>Industrial Engineer</option>
-                                    <option>hospital / Health Care</option>
-                                    <option>Design & Creative</option>
-                                </select>
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-xl-2 col-lg-2 col-md-2">
+                                            <label><h6 style="margin-top: 11px;">Select category : </h6></label>
+                                        </div>
+                                        <div class="col-xl-9 col-lg-9 col-md-9" style="padding-right:0px; padding-left:0px;">
+                                            {{ filterset.form.category }}
+                                        </div>
+                                        <div class="col-xl-1 col-lg-1 col-md-1" style="padding-right:0px; padding-left:0px;">
+                                            <button type="submit" class="btn btn-primary btn-md">
+                                                <i class="flaticon-search"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <br>
                         </form>
                     </div>
                 </div>
             </div>
             <div class="col-xl-12 col-lg-12 col-md-12">
-                {% for job in page_obj %}
+                {% for job in object_list %}
                     <!-- job box start -->
                     <div class="job-box">
                         <div class="company-logo">
@@ -72,19 +78,19 @@
                         <ul class="pagination">
                             {% if page_obj.has_previous %}
                                 <li class="page-item">
-                                    <a class="page-link" href="?page=1">&laquo; 1 </a>
+                                    <a class="page-link" href="?{{ request.GET.urlencode }}&page=1">&laquo; 1 </a>
                                 </li>
                                 <li class="page-item">
-                                    <a class="page-link" href="?page={{ page_obj.previous_page_number }}">Prev</a>
+                                    <a class="page-link" href="?{{ request.GET.urlencode }}&page={{ page_obj.previous_page_number }}">Prev</a>
                                 </li>
                             {% endif %}
                             <li class="page-item"><p class="page-link active">{{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</p></li>
                             {% if page_obj.has_next %}
                                 <li class="page-item">
-                                    <a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a>
+                                    <a class="page-link" href="?{{ request.GET.urlencode }}&page={{ page_obj.next_page_number }}">Next</a>
                                 </li>
                                 <li class="page-item">
-                                    <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">{{page_obj.paginator.num_pages}} &raquo;</a>
+                                    <a class="page-link" href="?{{ request.GET.urlencode }}&page={{ page_obj.paginator.num_pages }}">{{page_obj.paginator.num_pages}} &raquo;</a>
                                 </li>
                             {% endif %}
                         </ul>

@@ -67,6 +67,10 @@ body {
 .navbar{
     line-height: 0.5;
 }
+.flaticon-time, 
+.flaticon-comment{
+    margin-right:4px;
+}
 /** my additions**/
 
 a:hover {

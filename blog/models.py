@@ -6,7 +6,7 @@ from utils.genslug import gen_slug
 # Create your models here.
 
 class Article(models.Model):
-    slug = models.SlugField(blank=True)
+    slug = models.SlugField(blank=True, editable=False)
     title = models.CharField(max_length=100,blank=True,null=True)
     content = models.TextField(blank=True,null=True)
     date = models.DateTimeField(auto_now_add=True)
@@ -33,6 +33,11 @@ class Comment(models.Model):
     name = models.CharField(max_length=100,blank=True,null=True)
     content = models.TextField(blank=True,null=True)
     date = models.DateTimeField(auto_now_add=True)
+    parent = models.ForeignKey('self',on_delete=models.CASCADE,null=True,blank=True,related_name='r_replies')
+    main_parent = models.ForeignKey('self',on_delete=models.CASCADE,null=True,blank=True,related_name='replies')
+
+    class Meta:
+        ordering = ['date']
 
     def __str__(self) -> str:
         return self.name
