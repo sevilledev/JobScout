@@ -1,0 +1,105 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+<!-- Sub banner start -->
+<div class="sub-banner bg-color-full">
+    <div class="container">
+        <div class="breadcrumb-area">
+            <h1>Jobs</h1>
+            <ul class="breadcrumbs">
+                <li><a href="index.html">Home</a></li>
+                <li class="active">Jobs</li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- Sub banner end -->
+
+<!-- job listing section start -->
+<div class="job-listing-section content-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-12 col-lg-12 col-md-12">
+                <div class="sidebar-right">
+                    <!-- Advanced search start -->
+                    <div class="widget-4 advanced-search">
+                        <form method="GET" class="informeson">
+                            <div class="form-group">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-xl-2 col-lg-2 col-md-2">
+                                            <label><h6 style="margin-top: 11px;">Select category : </h6></label>
+                                        </div>
+                                        <div class="col-xl-9 col-lg-9 col-md-9" style="padding-right:0px; padding-left:0px;">
+                                            {{ filterset.form.category }}
+                                        </div>
+                                        <div class="col-xl-1 col-lg-1 col-md-1" style="padding-right:0px; padding-left:0px;">
+                                            <button type="submit" class="btn btn-primary btn-md">
+                                                <i class="flaticon-search"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-12 col-lg-12 col-md-12">
+                {% for job in object_list %}
+                    <!-- job box start -->
+                    <div class="job-box">
+                        <div class="company-logo">
+                            <img src="{{job.logo.url}}" alt="logo">
+                        </div>
+                        <div class="description">
+                            <div class="float-left">
+                                <h5 class="title"><a href="job-details.html">{{job.title}}</a></h5>
+                                <div class="candidate-listing-footer">
+                                    <ul>
+                                        <li><i class="flaticon-work"></i>{{job.company}}</li>
+                                        <li><i class="flaticon-pin"></i>{{job.location}}</li>
+                                        <li><i class="flaticon-time"></i>{{job.job_type}}</li>
+                                    </ul>
+                                    <h6>Deadline: {{job.deadline}}</h6>
+                                </div>
+                            </div>
+                            <div class="div-right">
+                                <a href="{% url 'jobdetail' slug=job.slug %}" class="apply-button">Apply Now</a>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+
+                <!-- Page navigation start -->
+                <div class="pagination-box hidden-mb-45 text-center">
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination">
+                            {% if page_obj.has_previous %}
+                                <li class="page-item">
+                                    <a class="page-link" href="?{{ request.GET.urlencode }}&page=1">&laquo; 1 </a>
+                                </li>
+                                <li class="page-item">
+                                    <a class="page-link" href="?{{ request.GET.urlencode }}&page={{ page_obj.previous_page_number }}">Prev</a>
+                                </li>
+                            {% endif %}
+                            <li class="page-item"><p class="page-link active">{{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</p></li>
+                            {% if page_obj.has_next %}
+                                <li class="page-item">
+                                    <a class="page-link" href="?{{ request.GET.urlencode }}&page={{ page_obj.next_page_number }}">Next</a>
+                                </li>
+                                <li class="page-item">
+                                    <a class="page-link" href="?{{ request.GET.urlencode }}&page={{ page_obj.paginator.num_pages }}">{{page_obj.paginator.num_pages}} &raquo;</a>
+                                </li>
+                            {% endif %}
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- job listing section end -->
+
+{% endblock content %}
