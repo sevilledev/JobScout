@@ -49,21 +49,22 @@
                                         <div class="comment-meta">
                                             <h3 class="{{comment.id}}">{{comment.name}}</h3>
                                             <div class="comment-meta">
-                                                {{comment.date|date:'d/m/Y'}}<a href="#form_reply" id="{{comment.id}}" onclick="reply_comment(this.id)">Reply</a>
+                                                {{comment.date|date:'d/m/Y , H:i'}}<a href="#form_reply" id="{{comment.id}}" onclick="reply_comment(this.id)">Reply</a>
                                             </div>
                                         </div>
                                         <p class="{{comment.id}}">{{comment.content}}</p>
                                     </div>
                                 </div>
-                                    {% for comment_reply in comment.r_replies.all %}
+                                    {% for comment_reply in comment.replies.all %}
                                     <ul>
                                         <li>
                                             <div class="comment">
                                                 <div class="comment-content" >
                                                     <div class="comment-meta">
+                                                        <span style="font-style:italic; color:grey;"><span style="font-weight:bold;">Replied to</span> {{comment_reply.parent}}</span>
                                                         <h3 class="{{comment_reply.id}}">{{comment_reply.name}}</h3>
                                                         <div class="comment-meta">
-                                                            {{comment_reply.date|date:'d/m/y'}}<a href="#form_reply" class="reply_btn" data-id="{{comment.id}}" id="{{comment_reply.id}}">Reply</a>
+                                                            {{comment_reply.date|date:'d/m/y H:i'}}<a href="#form_reply" class="reply_btn" data-id="{{comment.id}}" id="{{comment_reply.id}}" onclick="reply_to_reply(this, this.id)">Reply</a>
                                                         </div>
                                                     </div>
                                                     <p class="{{comment_reply.id}}">{{comment_reply.content}}</p>
@@ -89,8 +90,8 @@
                         <h3 id="form_reply">Leave a comment</h3>
                         {%load crispy_forms_tags%}
                         <form method="post" style="margin-top: 1.3em;">
-                            <input type="hidden" data-parent="null" value="null" name="parent-id" class="hidden-input">
-
+                            <input type="hidden" value="null" name="main-parent-id" class="main-hidden-input">
+                            <input type="hidden" value="null" name="parent-id" class="hidden-input">
                             <div style = "display: none;"  id="reply_info">
                                 <p>Replied comment:</p>
                                 <div  class="alert alert-primary">
@@ -106,7 +107,6 @@
                         </form>
                     {%endif%}
                 </div>
-
 
             </div>
         </div>
