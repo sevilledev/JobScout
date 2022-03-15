@@ -35,6 +35,36 @@
                     </div>
                 </div>
                 
+
+                <!-- Heading 2 -->
+                <div>
+                    {%if new_comment%}
+                        <div class="alert alert-success" role="alert">
+                        Your comment sent successfully!
+                        </div>
+                    {%else%}
+                        <h3 id="form_reply">Leave a comment</h3>
+                        {%load crispy_forms_tags%}
+                        <form method="post" style="margin-top: 1.3em;">
+                            <input type="hidden" value="null" name="main-parent-id" class="main-hidden-input">
+                            <input type="hidden" value="null" name="parent-id" class="hidden-input">
+                            <div style = "display: none;"  id="reply_info">
+                                <p>Replied comment:</p>
+                                <div  class="alert alert-primary">
+                                    <a onclick="no_reply_comment()" class="close"  aria-label="close">&times;</a>
+                                    <span><strong id="reply-name">Ad soyad </strong></span> 
+                                    <span id="reply-content">mesaji</span>
+                                </div>
+                            </div>
+
+                            {{comment_form | crispy}}
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-md button-theme" >Submit</button>
+                        </form>
+                    {%endif%}
+                </div>
+
+                <br><br>
                 <!-- Comments start -->
                 <h3 class="heading-2">Comments</h3>
                 <ul class="comments">
@@ -79,34 +109,6 @@
                     {%endif%}
                 </ul>
                 <br>
-
-                <!-- Heading 2 -->
-                <div>
-                    {%if new_comment%}
-                        <div class="alert alert-success" role="alert">
-                        Your comment sent successfully!
-                        </div>
-                    {%else%}
-                        <h3 id="form_reply">Leave a comment</h3>
-                        {%load crispy_forms_tags%}
-                        <form method="post" style="margin-top: 1.3em;">
-                            <input type="hidden" value="null" name="main-parent-id" class="main-hidden-input">
-                            <input type="hidden" value="null" name="parent-id" class="hidden-input">
-                            <div style = "display: none;"  id="reply_info">
-                                <p>Replied comment:</p>
-                                <div  class="alert alert-primary">
-                                    <a onclick="no_reply_comment()" class="close"  aria-label="close">&times;</a>
-                                    <span><strong id="reply-name">Ad soyad </strong></span> 
-                                    <span id="reply-content">mesaji</span>
-                                </div>
-                            </div>
-
-                            {{comment_form | crispy}}
-                            {% csrf_token %}
-                            <button type="submit" class="btn btn-primary btn-lg">Submit</button>
-                        </form>
-                    {%endif%}
-                </div>
 
             </div>
         </div>
