@@ -68,18 +68,28 @@ WSGI_APPLICATION = 'jobscout.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
-
-DATABASES = {
+if DEBUG:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME': 'jobscout',
+            'USER': 'sevilledev',
+            'PASSWORD': 'sevilledev',
+            'HOST': 'localhost',
+            'PORT': '',
+        }
+    }
+else: 
+    DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'jobscout',
         'USER': 'sevilledev',
-        'PASSWORD': 'sevilledev',
+        'PASSWORD': '4047042!Ss',
         'HOST': 'localhost',
         'PORT': '',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
@@ -124,7 +134,9 @@ STATIC_ROOT = os.path.join(BASE_DIR,"staticfiles")
 # Media files
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+JOB_STORAGE = os.path.join(MEDIA_ROOT, "job_media")
 BLOG_STORAGE = os.path.join(MEDIA_ROOT, "blog_media")
+SLIDER_STORAGE = os.path.join(MEDIA_ROOT, "slider_media")
 
 
 

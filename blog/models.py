@@ -25,7 +25,9 @@ class Article(models.Model):
 class ArticleFile(models.Model):
     article = models.ForeignKey(Article,on_delete=models.CASCADE)
     file = models.FileField(
-        storage=FileSystemStorage(location=settings.BLOG_STORAGE)
+        storage=FileSystemStorage(location=settings.BLOG_STORAGE),
+        blank=True,
+        null=True
     )
 
 class Comment(models.Model):

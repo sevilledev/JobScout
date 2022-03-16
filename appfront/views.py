@@ -8,8 +8,10 @@ from .forms import *
 
 def home(request):
     job_count = JobCard.objects.count()
+    sliders = Slider.objects.all()
     context = {
         'job_count':job_count,
+        'sliders':sliders
     }
     return render(request, 'home.html', context)
 
