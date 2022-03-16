@@ -1,0 +1,132 @@
+{% extends 'layout.html' %}
+{% load static %}
+{% block content %}
+
+<!-- Sub banner start -->
+<div class="sub-banner bg-color-full">
+    <div class="container">
+        <div class="breadcrumb-area">
+            <h1>{{article.title}}</h1>
+            <ul class="breadcrumbs">
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li class="active"><a href="{% url 'blog' %}">Career Notes</a></li>
+                <li class="active">Article</li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- Sub banner end -->
+
+<!-- Blog body start -->
+<div class="blog-body content-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <!-- Blog 1 start -->
+                <div class="blog-1 blog-big">
+                    <div class="detail">
+                        <h3>{{article.title}}</h3>
+                        <div class="post-meta">
+                            <span><i class="flaticon-time"></i>{{article.date|date:'d/m/y'}}</span>
+                            <span><i class="flaticon-comment"></i>{{comment_count}}</span>
+                        </div>
+                        <p>{{article.content|linebreaks}}</p>
+                        <br>
+                    </div>
+                </div>
+                
+
+                <!-- Heading 2 -->
+                <div>
+                    {%if new_comment%}
+                        <div class="alert alert-success" role="alert">
+                        Your comment sent successfully!
+                        </div>
+                    {%else%}
+                        <h3 id="form_reply">Leave a comment</h3>
+                        {%load crispy_forms_tags%}
+                        <form method="post" style="margin-top: 1.3em;">
+                            <input type="hidden" value="null" name="main-parent-id" class="main-hidden-input">
+                            <input type="hidden" value="null" name="parent-id" class="hidden-input">
+                            <div style = "display: none;"  id="reply_info">
+                                <p>Replied comment:</p>
+                                <div  class="alert alert-primary">
+                                    <a onclick="no_reply_comment()" class="close"  aria-label="close">&times;</a>
+                                    <span><strong id="reply-name">Ad soyad </strong></span> 
+                                    <span id="reply-content">mesaji</span>
+                                </div>
+                            </div>
+
+                            {{comment_form | crispy}}
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-md button-theme" >Submit</button>
+                        </form>
+                    {%endif%}
+                </div>
+
+                <br><br>
+                <!-- Comments start -->
+                <h3 class="heading-2">Comments</h3>
+                <ul class="comments">
+                    {% if comments.count == 0%}
+                            <h6>No comments yet...</h6>
+                    {%else%}
+                        {% for comment in comments %}
+                            {% if comment.parent is None %}
+                            <li>
+                                <div class="comment">
+                                    <div class="comment-content" >
+                                        <div class="comment-meta">
+                                            <h3 class="{{comment.id}}">{{comment.name}}</h3>
+                                            <div class="comment-meta">
+                                                {{comment.date|date:'d/m/Y , H:i'}}<a href="#form_reply" id="{{comment.id}}" onclick="reply_comment(this.id)">Reply</a>
+                                            </div>
+                                        </div>
+                                        <p class="{{comment.id}}">{{comment.content}}</p>
+                                    </div>
+                                </div>
+                                    {% for comment_reply in comment.replies.all %}
+                                    <ul>
+                                        <li>
+                                            <div class="comment">
+                                                <div class="comment-content" >
+                                                    <div class="comment-meta">
+                                                        <span style="font-style:italic; color:grey;"><span style="font-weight:bold;">Replied to</span> {{comment_reply.parent}}</span>
+                                                        <h3 class="{{comment_reply.id}}">{{comment_reply.name}}</h3>
+                                                        <div class="comment-meta">
+                                                            {{comment_reply.date|date:'d/m/y H:i'}}<a href="#form_reply" class="reply_btn" data-id="{{comment.id}}" id="{{comment_reply.id}}" onclick="reply_to_reply(this, this.id)">Reply</a>
+                                                        </div>
+                                                    </div>
+                                                    <p class="{{comment_reply.id}}">{{comment_reply.content}}</p>
+                                                </div>
+                                            </div>
+                                        </li>      
+                                    </ul>
+                                {%endfor%}
+                            </li>    
+                            {% endif %}
+                        {%endfor%}
+                    {%endif%}
+                </ul>
+                <br>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Blog body end -->
+
+{% endblock content %}
+
+
+
+{% block js %}
+
+<script  src="{% static 'js/reply.js' %}"></script>
+<script>
+
+ 
+
+</script>
+
+{% endblock js %}
