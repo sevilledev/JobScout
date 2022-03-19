@@ -71,6 +71,9 @@ body {
 .flaticon-comment{
     margin-right:4px;
 }
+.carousel-item{
+    height: 750px;
+}
 /** my additions**/
 
 a:hover {
