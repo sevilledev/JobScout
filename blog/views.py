@@ -22,7 +22,6 @@ def article(request, slug):
     if request.method == 'POST':
         parent_id = request.POST.get("parent-id")
         main_parent_id = request.POST.get("main-parent-id")
-        print(main_parent_id)
         if main_parent_id != "null":
             main_parent_id = int(main_parent_id)
         else:
