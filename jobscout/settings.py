@@ -74,7 +74,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'jobscout',
         'USER': 'sevilledev',
-        'PASSWORD': '4047042!Ss',
+        'PASSWORD': 'sevilledev',
         'HOST': 'localhost',
         'PORT': '',
     }
