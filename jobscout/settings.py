@@ -68,19 +68,8 @@ WSGI_APPLICATION = 'jobscout.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
-if DEBUG:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql_psycopg2',
-            'NAME': 'jobscout',
-            'USER': 'sevilledev',
-            'PASSWORD': 'sevilledev',
-            'HOST': 'localhost',
-            'PORT': '',
-        }
-    }
-else: 
-    DATABASES = {
+
+DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'jobscout',

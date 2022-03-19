@@ -29,6 +29,9 @@ class JobCard(models.Model):
     description = models.TextField(blank=True,null=True)
     contact = models.CharField(max_length=100,blank=True,null=True)
 
+    class Meta:
+        ordering = ['-id']
+        
     def __str__(self) -> str:
         return f'{self.company} : {self.title}'
 
