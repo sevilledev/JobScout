@@ -13,7 +13,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-4$fg&xy7gv)kix4sz+!_nzx@lhhe5wbw)=et58@_qrn$b-39@g'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -68,28 +68,17 @@ WSGI_APPLICATION = 'jobscout.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
-if DEBUG:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql_psycopg2',
-            'NAME': 'jobscout',
-            'USER': 'sevilledev',
-            'PASSWORD': 'sevilledev',
-            'HOST': 'localhost',
-            'PORT': '',
-        }
-    }
-else: 
-    DATABASES = {
+DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'jobscout',
         'USER': 'sevilledev',
-        'PASSWORD': '4047042!Ss',
+        'PASSWORD': 'sevilledev',
         'HOST': 'localhost',
         'PORT': '',
     }
 }
+
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators

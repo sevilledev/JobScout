@@ -11,6 +11,8 @@ class Article(models.Model):
     content = models.TextField(blank=True,null=True)
     date = models.DateTimeField(auto_now_add=True)
 
+    class Meta:
+        ordering = ['-id']
 
     def __str__(self):
         return f'{self.title} : {self.date}'
