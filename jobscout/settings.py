@@ -21,6 +21,8 @@ ALLOWED_HOSTS = ['*']
 #  Application definition
 
 INSTALLED_APPS = [
+    'ckeditor',
+    'ckeditor_uploader',
     'crispy_forms',
     'blog',
     'joblist',
@@ -34,6 +36,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 ]
+
+CKEDITOR_UPLOAD_PATH='article/'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

@@ -30,7 +30,7 @@
                                 <span><i class="flaticon-time"></i>{{article.date|date:'d/m/Y'}}</span>
                                 <span><a href="#"><i class="flaticon-comment"></i>{{article.comments.count}}</a></span>
                             </div>
-                            <p>{{article.content}}</p>
+                            <p>{{article.little_desc}}</p>
                             <a href="{% url 'article' slug=article.slug %}" class="read-more">Read more</a>
                         </div>
                     </div>

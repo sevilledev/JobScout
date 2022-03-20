@@ -8,6 +8,7 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('ckeditor/', include('ckeditor_uploader.urls')),
     # url(r'^jet/', include('jet.urls', 'jet')), # Django JET URLS
     # url(r'^jet/dashboard/', include('jet.dashboard.urls', 'jet-dashboard')), # Django JET dashboard URLS
     path('', include('appfront.urls')),

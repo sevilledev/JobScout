@@ -4,11 +4,11 @@ from .models import *
 from django.views.generic import ListView, DetailView
 from .models import *
 from .forms import *
-# Create your views here. toxunma:)
+# Create your views here.
 
 class Blog(ListView):
     template_name = 'blog.html'
-    paginate_by = 1
+    paginate_by = 5
     model = Article
 
 def article(request, slug):
