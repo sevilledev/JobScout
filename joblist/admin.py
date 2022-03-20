@@ -5,3 +5,4 @@ from .models import *
 
 admin.site.register(JobCard)
 admin.site.register(JobCategory)
+admin.site.register(JobCompany)

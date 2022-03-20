@@ -10,12 +10,18 @@ def home(request):
     sliders = Slider.objects.all()
     context = {
         'job_count':job_count,
-        'sliders':sliders
+        'sliders':sliders,
     }
     return render(request, 'home.html', context)
 
 def about(request):
-    return render(request, 'about.html')
+    about = About.objects.first()
+    services = Service.objects.all()
+    context = {
+        'about':about,
+        'services':services,
+    }
+    return render(request, 'about.html', context)
 
 class Contact(FormView):
     template_name = 'contact.html'

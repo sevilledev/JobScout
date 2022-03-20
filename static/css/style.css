@@ -71,8 +71,8 @@ body {
 .flaticon-comment{
     margin-right:4px;
 }
-.carousel-item{
-    height: 750px;
+.service{
+    justify-content: center;
 }
 /** my additions**/
 

@@ -7,18 +7,13 @@
 <div class="banner bg-color-full" id="banner">
     <div id="bannerCarousole" class="carousel slide" data-ride="carousel">
         <div class="carousel-inner">
-            <div class="carousel-item banner-max-height active">
-                <img class="d-block w-100 h-100" src="{% static 'main/hire1.jpg' %}" alt="banner">
+            {%for slider in sliders%}
+            <div class="carousel-item banner-max-height {% if forloop.counter0 == 0 %}active{% endif %}">
+                <img class="d-block w-100 h-100" style="max-width: 100%;max-height: 100%;display: block;" src="{{slider.image.url}}" alt="banner">
                 <div class="carousel-caption banner-slider-inner d-flex text-center"></div>
             </div>
-            <div class="carousel-item banner-max-height">
-                <img class="d-block w-100 h-100" src="{% static 'main/hire1.jpg' %}" alt="banner">
-                <div class="carousel-caption banner-slider-inner d-flex text-center"></div>
-            </div>
-            <div class="carousel-item banner-max-height">
-                <img class="d-block w-100 h-100" src="{% static 'main/hire1.jpg' %}" alt="banner">
-                <div class="carousel-caption banner-slider-inner d-flex text-center"></div>
-            </div>
+            {%endfor%}
+            
         </div>
     </div>
     <div class="banner-inner">
