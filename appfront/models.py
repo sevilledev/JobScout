@@ -1,7 +1,5 @@
 from django.db import models
-from django.conf import settings
 from django.db.models.fields.files import ImageField
-from django.core.files.storage import FileSystemStorage
 
 # Create your models here.
 
@@ -17,7 +15,6 @@ class Contact(models.Model):
 
 class Slider(models.Model):
     image = ImageField(
-        storage=FileSystemStorage(location=settings.SLIDER_STORAGE),
         blank=True,
         null=True
     )
@@ -27,7 +24,6 @@ class Slider(models.Model):
 
 class About(models.Model):
     image = ImageField(
-        storage=FileSystemStorage(location=settings.SLIDER_STORAGE),
         blank=True,
         null=True
     )
