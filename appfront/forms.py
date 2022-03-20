@@ -9,6 +9,7 @@ class ContactForm(forms.Form):
     subject = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control', 'placeholder':'Subject', 'type':'text', 'name':'subject'}))
     number = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control', 'placeholder':'Number', 'type':'text', 'name':'Phone'}))
     message = forms.CharField(widget=forms.Textarea(attrs={'class':'form-control', 'placeholder':'Write message', 'name':'message'}))
+    file = forms.FileField()
 
     def save_msg(self):
         msg = Contact(
@@ -16,5 +17,6 @@ class ContactForm(forms.Form):
             subject=self.cleaned_data['subject'],
             email=self.cleaned_data['email'],
             number=self.cleaned_data['number'],
-            message=self.cleaned_data['message'])
+            message=self.cleaned_data['message'],
+            file=self.cleaned_data['file'])
         msg.save()

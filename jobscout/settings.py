@@ -71,12 +71,8 @@ WSGI_APPLICATION = 'jobscout.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'jobscout',
-        'USER': 'sevilledev',
-        'PASSWORD': 'sevilledev',
-        'HOST': 'localhost',
-        'PORT': '',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 

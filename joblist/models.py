@@ -11,16 +11,22 @@ class JobCategory(models.Model):
     def __str__(self) -> str:
         return self.name
 
+class JobCompany(models.Model):
+    name = models.CharField(max_length=200,blank=True,null=True)
+
+    def __str__(self) -> str:
+        return self.name
+
 class JobCard(models.Model):
     slug = models.SlugField(blank=True, editable=False)
     title = models.CharField(max_length=200,blank=True,null=True)
-    category = models.ForeignKey(JobCategory,on_delete=models.CASCADE,blank=True,null=True,related_name='jobs')
+    category = models.ForeignKey(JobCategory,on_delete=models.CASCADE,blank=True,null=True,related_name='category_jobs')
+    company = models.ForeignKey(JobCompany,on_delete=models.CASCADE,blank=True,null=True,related_name='company_jobs')
     logo = ImageField(
         upload_to=upload_job_img,
         blank=True,
         null=True
-    )
-    company = models.CharField(max_length=200,blank=True,null=True)
+    ) 
     location = models.CharField(max_length=200,blank=True,null=True)
     job_type = models.CharField(max_length=200,blank=True,null=True)
     deadline = models.DateField(blank=True,null=True)
