@@ -2,7 +2,7 @@
 
 import django.core.files.storage
 from django.db import migrations, models
-import utils.uploadjobimg
+import utils.uploadimg
 
 
 class Migration(migrations.Migration):
@@ -19,7 +19,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('title', models.CharField(blank=True, max_length=200, null=True)),
-                ('logo', models.ImageField(blank=True, null=True, storage=django.core.files.storage.FileSystemStorage(location='/home/sevilledev/Desktop/Django/JobScout/jobscout/media/'), upload_to=utils.uploadjobimg.upload_job_img)),
+                ('logo', models.ImageField(blank=True, null=True, storage=django.core.files.storage.FileSystemStorage(location='/home/sevilledev/Desktop/Django/JobScout/jobscout/media/'), upload_to=utils.uploadimg.upload_job_img)),
                 ('category', models.CharField(blank=True, max_length=200, null=True)),
                 ('location', models.CharField(blank=True, max_length=200, null=True)),
                 ('job_type', models.CharField(blank=True, max_length=200, null=True)),

@@ -2,7 +2,7 @@
 
 import django.core.files.storage
 from django.db import migrations, models
-import utils.uploadjobimg
+import utils.uploadimg
 
 
 class Migration(migrations.Migration):
@@ -15,6 +15,6 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='jobcard',
             name='logo',
-            field=models.ImageField(blank=True, null=True, storage=django.core.files.storage.FileSystemStorage(location='/home/sevilledev/Desktop/Django/JobScout/jobscout/media/'), upload_to=utils.uploadjobimg.upload_job_img),
+            field=models.ImageField(blank=True, null=True, storage=django.core.files.storage.FileSystemStorage(location='/home/sevilledev/Desktop/Django/JobScout/jobscout/media/'), upload_to=utils.uploadimg.upload_job_img),
         ),
     ]

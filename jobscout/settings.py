@@ -123,11 +123,6 @@ STATIC_ROOT = os.path.join(BASE_DIR,"staticfiles")
 # Media files
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
-JOB_STORAGE = os.path.join(MEDIA_ROOT, "job_media")
-BLOG_STORAGE = os.path.join(MEDIA_ROOT, "blog_media")
-SLIDER_STORAGE = os.path.join(MEDIA_ROOT, "slider_media")
-
-
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field

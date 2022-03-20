@@ -1,7 +1,6 @@
-from django.conf import settings
 from django.db import models
-from django.core.files.storage import FileSystemStorage
 from utils.genslug import gen_slug
+from utils.uploadimg import upload_blog_img
 
 # Create your models here.
 
@@ -27,7 +26,7 @@ class Article(models.Model):
 class ArticleFile(models.Model):
     article = models.ForeignKey(Article,on_delete=models.CASCADE)
     file = models.FileField(
-        storage=FileSystemStorage(location=settings.BLOG_STORAGE),
+        upload_to=upload_blog_img,
         blank=True,
         null=True
     )

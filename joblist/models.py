@@ -1,9 +1,8 @@
+from distutils.command.upload import upload
 from django.db import models
-from django.conf import settings
 from django.db.models.fields.files import ImageField
-from django.core.files.storage import FileSystemStorage
 from utils.genslug import gen_slug
-
+from utils.uploadimg import upload_job_img
 # Create your models here.
 
 class JobCategory(models.Model):
@@ -17,7 +16,7 @@ class JobCard(models.Model):
     title = models.CharField(max_length=200,blank=True,null=True)
     category = models.ForeignKey(JobCategory,on_delete=models.CASCADE,blank=True,null=True,related_name='jobs')
     logo = ImageField(
-        storage=FileSystemStorage(location=settings.JOB_STORAGE),
+        upload_to=upload_job_img,
         blank=True,
         null=True
     )
