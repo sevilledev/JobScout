@@ -1,15 +1,17 @@
 from django.shortcuts import render
 from django.views.generic.edit import FormView
-from joblist.models import JobCard
+from joblist.models import JobCard, JobCompany
 from .forms import *
 
 # Create your views here.
 
 def home(request):
     job_count = JobCard.objects.count()
+    company_count = JobCompany.objects.count() 
     sliders = Slider.objects.all()
     context = {
         'job_count':job_count,
+        'company_count':company_count,
         'sliders':sliders,
     }
     return render(request, 'home.html', context)

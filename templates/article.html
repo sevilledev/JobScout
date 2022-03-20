@@ -30,7 +30,11 @@
                             <span><i class="flaticon-time"></i>{{article.date|date:'d/m/y'}}</span>
                             <span><i class="flaticon-comment"></i>{{comment_count}}</span>
                         </div>
-                        <p>{{article.content|linebreaks}}</p>
+                        <p>{{article.content|safe}}</p>
+                        {%for file in article.files.all%}
+                        {{file.file.url}}
+                        <embed src="{{file.file.url}}" width="100px" height="100px" />
+                        {%endfor%}
                         <br>
                     </div>
                 </div>
