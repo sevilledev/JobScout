@@ -3,6 +3,8 @@ from django.db import models
 from django.db.models.fields.files import ImageField
 from utils.genslug import gen_slug
 from utils.uploadimg import upload_job_img
+from ckeditor_uploader.fields import RichTextUploadingField
+
 # Create your models here.
 
 class JobCategory(models.Model):
@@ -31,7 +33,7 @@ class JobCard(models.Model):
     job_type = models.CharField(max_length=200,blank=True,null=True)
     deadline = models.DateField(blank=True,null=True)
     experience = models.CharField(max_length=200,blank=True,null=True)
-    description = models.TextField(blank=True,null=True)
+    description = RichTextUploadingField(blank=True,null=True)
     contact = models.CharField(max_length=100,blank=True,null=True)
 
     class Meta:
