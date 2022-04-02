@@ -27,6 +27,7 @@ INSTALLED_APPS = [
     'blog',
     'joblist',
     'appfront',
+    'analytics',
     # 'jet.dashboard',
     # 'jet',
     'django.contrib.admin',
@@ -38,6 +39,13 @@ INSTALLED_APPS = [
 ]
 
 CKEDITOR_UPLOAD_PATH='article/'
+
+CKEDITOR_CONFIGS = {
+    'default' : {
+        'extraPlugins': 'codesnippet',
+        'toolbar':'full',
+    },
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
