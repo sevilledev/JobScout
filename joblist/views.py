@@ -1,8 +1,9 @@
+from urllib import request
 from django.views.generic import ListView, DetailView
-from multiprocessing import context
-from django.shortcuts import render
+from analytics.mixins import ObjectViewedMixin
 from .models import *
 from .filters import *
+from analytics.models import ObjectViewed
 
 # Create your views here.
 
@@ -26,10 +27,19 @@ class JobListView(FilteredListView):
     paginate_by = 5
     model = JobCard
 
-class JobDetailView(DetailView):
+class JobDetailView(ObjectViewedMixin,DetailView):
     model = JobCard
+    queryset = JobCard.objects.all()
     template_name = 'jobdetail.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        j_object = JobCard.objects.get(slug=self.kwargs.get('slug'))
+        context['views'] = ObjectViewed.objects.filter(object_id=j_object.id).count()
         return context
+    
+    def get_object(self, *args, **kwargs):
+        request = self.request
+        slug = self.kwargs.get('slug')
+        instance = JobCard.objects.get(slug=slug)
+        return instance
