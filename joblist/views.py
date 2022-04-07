@@ -24,7 +24,7 @@ class FilteredListView(ListView):
 class JobListView(FilteredListView):
     filterset_class = JobFilter
     template_name = 'joblist.html'
-    paginate_by = 5
+    paginate_by = 20
     model = JobCard
 
 class JobDetailView(ObjectViewedMixin,DetailView):

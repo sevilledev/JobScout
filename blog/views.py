@@ -8,7 +8,7 @@ from .forms import *
 
 class Blog(ListView):
     template_name = 'blog.html'
-    paginate_by = 5
+    paginate_by = 10
     model = Article
 
 def article(request, slug):
