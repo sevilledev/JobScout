@@ -1,3 +1,4 @@
+from datetime import datetime
 from urllib import request
 from django.views.generic import ListView, DetailView
 from analytics.mixins import ObjectViewedMixin
@@ -26,6 +27,11 @@ class JobListView(FilteredListView):
     template_name = 'joblist.html'
     paginate_by = 20
     model = JobCard
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)     
+        self.model.objects.filter(deadline__lt=datetime.today().strftime('%Y-%m-%d')).delete()
+        return context
 
 class JobDetailView(ObjectViewedMixin,DetailView):
     model = JobCard
