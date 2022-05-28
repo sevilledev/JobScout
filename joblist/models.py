@@ -23,7 +23,7 @@ class JobCompany(models.Model):
 
 class JobCard(models.Model):
     slug = models.SlugField(blank=True, editable=False)
-    created_date = models.DateField(default=timezone.now(),blank=True,null=True)
+    created_date = models.DateField(auto_now_add=True,blank=True,null=True)
     title = models.CharField(max_length=200,blank=True,null=True)
     category = models.ForeignKey(JobCategory,on_delete=models.CASCADE,blank=True,null=True,related_name='category_jobs')
     company = models.ForeignKey(JobCompany,on_delete=models.CASCADE,blank=True,null=True,related_name='company_jobs')

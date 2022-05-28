@@ -30,7 +30,8 @@ class JobListView(FilteredListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)     
-        self.model.objects.filter(deadline__lt=datetime.today().strftime('%Y-%m-%d')).delete()
+        context['jobs_list'] = self.model.objects.filter(deadline__gte=datetime.today().strftime('%Y-%m-%d'))
+        print(context['jobs_list'])
         return context
 
 class JobDetailView(ObjectViewedMixin,DetailView):
