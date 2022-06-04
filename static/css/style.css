@@ -7496,4 +7496,23 @@ employer-box-2{
     height: 100vh !important;
 }
 
-
+/* scroll bar */
+* {
+    scrollbar-width: auto;
+    scrollbar-color: #1fea1c #ffffff;
+  }
+  
+  /* Chrome, Edge, and Safari */
+  *::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  *::-webkit-scrollbar-track {
+    background: #ffffff;
+  }
+  
+  *::-webkit-scrollbar-thumb {
+    background-color: #376bff;
+    border-radius: 7px;
+    border: 2px solid #376bff;
+  }
