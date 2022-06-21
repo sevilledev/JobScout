@@ -426,3 +426,7 @@ $(function () {
         }
     }).trigger("resize");
 })(jQuery);
+
+$(document).ready(function(){
+    $('#job_desc a').attr('target', '_blank');
+  });
