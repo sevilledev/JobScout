@@ -429,4 +429,5 @@ $(function () {
 
 $(document).ready(function(){
     $('#job_desc a').attr('target', '_blank');
+    $('#article_detail a').attr('target', '_blank');
   });
