@@ -22,17 +22,14 @@ class FilteredListView(ListView):
         return context
 
 
-class JobListView(FilteredListView):
-    filterset_class = JobFilter
-    template_name = 'joblist.html'
-    paginate_by = 20
+class JobListView(ListView):
     model = JobCard
+    template_name = 'joblist.html'
+    paginate_by = 2
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)     
-        context['jobs_list'] = self.model.objects.filter(deadline__gte=datetime.today().strftime('%Y-%m-%d'))
-        print(context['jobs_list'])
-        return context
+    def get_queryset(self, **kwargs):
+       qs = super().get_queryset(**kwargs)
+       return qs.filter(deadline__gte=datetime.today().strftime('%Y-%m-%d'))
 
 class JobDetailView(ObjectViewedMixin,DetailView):
     model = JobCard
