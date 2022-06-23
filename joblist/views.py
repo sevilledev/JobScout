@@ -25,7 +25,7 @@ class FilteredListView(ListView):
 class JobListView(ListView):
     model = JobCard
     template_name = 'joblist.html'
-    paginate_by = 2
+    paginate_by = 15
 
     def get_queryset(self, **kwargs):
        qs = super().get_queryset(**kwargs)
