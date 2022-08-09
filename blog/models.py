@@ -1,3 +1,4 @@
+from ipaddress import ip_address
 from django.db import models
 from utils.genslug import gen_slug
 from utils.uploadimg import upload_blog_img
@@ -30,6 +31,7 @@ class Comment(models.Model):
     date = models.DateTimeField(auto_now_add=True)
     parent = models.ForeignKey('self',on_delete=models.CASCADE,null=True,blank=True,related_name='r_replies')
     main_parent = models.ForeignKey('self',on_delete=models.CASCADE,null=True,blank=True,related_name='replies')
+    ip_address = models.CharField(max_length=200,blank=True,null=True)
 
     class Meta:
         ordering = ['date']
