@@ -27,6 +27,7 @@ INSTALLED_APPS = [
     'blog',
     'joblist',
     'appfront',
+    'analytics',
     # 'jet.dashboard',
     # 'jet',
     'django.contrib.admin',
