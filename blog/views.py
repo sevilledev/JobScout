@@ -25,7 +25,7 @@ def article(request, slug):
         ip_address = get_client_ip(request)
         count = Comment.objects.filter(ip_address=ip_address).count()
         print(count)
-        if count <= 10 and request.POST.get("content"):
+        if count <= 10 and request.POST.get("content") and ip_address!='195.3.221.154':
             parent_id = request.POST.get("parent-id")
             main_parent_id = request.POST.get("main-parent-id")
             if main_parent_id != "null":
