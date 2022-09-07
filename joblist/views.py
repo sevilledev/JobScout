@@ -1,7 +1,6 @@
 from datetime import datetime
 from urllib import request
 from django.views.generic import ListView, DetailView
-from analytics.mixins import ObjectViewedMixin
 from .models import *
 from .filters import *
 from analytics.models import ObjectViewed
@@ -31,7 +30,7 @@ class JobListView(ListView):
        qs = super().get_queryset(**kwargs)
        return qs.filter(deadline__gte=datetime.today().strftime('%Y-%m-%d'))
 
-class JobDetailView(ObjectViewedMixin,DetailView):
+class JobDetailView(DetailView):
     model = JobCard
     queryset = JobCard.objects.all()
     template_name = 'jobdetail.html'
@@ -39,7 +38,7 @@ class JobDetailView(ObjectViewedMixin,DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         j_object = JobCard.objects.get(slug=self.kwargs.get('slug'))
-        context['views'] = ObjectViewed.objects.filter(object_id=j_object.id).count()
+        # context['views'] = ObjectViewed.objects.filter(object_id=j_object.id).count()
         return context
     
     def get_object(self, *args, **kwargs):
