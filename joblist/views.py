@@ -1,11 +1,9 @@
 from datetime import datetime
-from urllib import request
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView
 from .models import *
 from .filters import *
-from analytics.models import ObjectViewed
+from hitcount.views import HitCountDetailView
 
-# Create your views here.
 
 class FilteredListView(ListView):
     filterset_class = None
@@ -30,10 +28,11 @@ class JobListView(ListView):
        qs = super().get_queryset(**kwargs)
        return qs.filter(deadline__gte=datetime.today().strftime('%Y-%m-%d'))
 
-class JobDetailView(DetailView):
+class JobDetailView(HitCountDetailView):
     model = JobCard
     queryset = JobCard.objects.all()
     template_name = 'jobdetail.html'
+    count_hit = True
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

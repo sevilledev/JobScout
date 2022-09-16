@@ -1,5 +1,6 @@
 {% extends 'layout.html' %}
 {% load static %}
+{% load hitcount_tags %}
 {% block content %}
 
 <!-- Sub banner start -->
@@ -29,6 +30,8 @@
                         <div class="post-meta">
                             <span><i class="flaticon-time"></i>{{article.date|date:'d/m/y'}}</span>
                             <span><i class="flaticon-comment"></i>{{comment_count}}</span>
+                            <span><i class="flaticon-time"></i>{% get_hit_count for article %}</span>
+
                         </div>
                         <p>{{article.content|safe}}</p>
                         {%for file in article.files.all%}
